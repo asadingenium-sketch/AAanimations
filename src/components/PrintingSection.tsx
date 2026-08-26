@@ -249,22 +249,10 @@ export const PrintingSection: React.FC<PrintingSectionProps> = ({
                     alt={cat.title}
                     onError={(e) => {
                       const target = e.currentTarget;
-                      const attempt = parseInt(target.dataset.retry || '0', 10);
-                      if (attempt === 0) {
-                        target.dataset.retry = '1';
-                        target.src = getAssetUrl(`images/printing/${cat.id}.jpg`);
-                      } else if (attempt === 1) {
-                        target.dataset.retry = '2';
-                        target.src = getAssetUrl(`images/printing/${cat.id}.png`);
-                      } else if (attempt === 2) {
-                        target.dataset.retry = '3';
-                        target.src = getAssetUrl(`Images/Printing Section/${cat.title}.jpg`);
-                      } else if (attempt === 3) {
-                        target.dataset.retry = '4';
-                        target.src = getAssetUrl(`Images/Printing Section/${cat.title}.png`);
-                      } else if (attempt === 4) {
-                        target.dataset.retry = '5';
-                        target.src = getAssetUrl(`images/Printing Section/${cat.title}.jpg`);
+                      const fallbackPng = getAssetUrl(`Images/Printing Section/${cat.title}.png`);
+                      const fallbackJpg = getAssetUrl(`Images/Printing Section/${cat.title}.jpg`);
+                      if (target.src !== fallbackPng && target.src !== fallbackJpg) {
+                        target.src = fallbackJpg;
                       }
                     }}
                     className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 opacity-90 group-hover:opacity-100"
@@ -743,22 +731,10 @@ export const PrintingSection: React.FC<PrintingSectionProps> = ({
                 alt={selectedCategory.title}
                 onError={(e) => {
                   const target = e.currentTarget;
-                  const attempt = parseInt(target.dataset.retry || '0', 10);
-                  if (attempt === 0) {
-                    target.dataset.retry = '1';
-                    target.src = getAssetUrl(`images/printing/${selectedCategory.id}.jpg`);
-                  } else if (attempt === 1) {
-                    target.dataset.retry = '2';
-                    target.src = getAssetUrl(`images/printing/${selectedCategory.id}.png`);
-                  } else if (attempt === 2) {
-                    target.dataset.retry = '3';
-                    target.src = getAssetUrl(`Images/Printing Section/${selectedCategory.title}.jpg`);
-                  } else if (attempt === 3) {
-                    target.dataset.retry = '4';
-                    target.src = getAssetUrl(`Images/Printing Section/${selectedCategory.title}.png`);
-                  } else if (attempt === 4) {
-                    target.dataset.retry = '5';
-                    target.src = getAssetUrl(`images/Printing Section/${selectedCategory.title}.jpg`);
+                  const fallbackPng = getAssetUrl(`Images/Printing Section/${selectedCategory.title}.png`);
+                  const fallbackJpg = getAssetUrl(`Images/Printing Section/${selectedCategory.title}.jpg`);
+                  if (target.src !== fallbackPng && target.src !== fallbackJpg) {
+                    target.src = fallbackJpg;
                   }
                 }}
                 className="w-full h-full object-cover"

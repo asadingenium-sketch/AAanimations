@@ -13,24 +13,12 @@ interface ClientLogoItem {
 const ClientLogoCard: React.FC<{ client: ClientLogoItem }> = ({ client }) => {
   const [imgSrc, setImgSrc] = useState<string>(() => getAssetUrl(client.logo));
   const [hasError, setHasError] = useState(false);
-  const [retryCount, setRetryCount] = useState(0);
 
   const handleError = () => {
-    if (retryCount === 0) {
-      setRetryCount(1);
-      setImgSrc(getAssetUrl(`client-logos/${client.id}.png`));
-    } else if (retryCount === 1) {
-      setRetryCount(2);
-      setImgSrc(getAssetUrl(`client-logos/${client.id}.jpg`));
-    } else if (retryCount === 2) {
-      setRetryCount(3);
-      setImgSrc(getAssetUrl(`Client Logos/${client.id}.png`));
-    } else if (retryCount === 3) {
-      setRetryCount(4);
-      setImgSrc(getAssetUrl(`Client Logos/${client.id}.jpg`));
-    } else if (retryCount === 4) {
-      setRetryCount(5);
-      setImgSrc(getAssetUrl(`images/Client Logos/${client.id}.jpg`));
+    // If not already tried exact path, try /Images/Client Logos/{id}.jpg
+    const fallbackPath = getAssetUrl(`Images/Client Logos/${client.id}.jpg`);
+    if (imgSrc !== fallbackPath) {
+      setImgSrc(fallbackPath);
     } else {
       setHasError(true);
     }

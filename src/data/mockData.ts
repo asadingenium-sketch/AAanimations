@@ -21,7 +21,7 @@ export const HERO_STATS = [
 export const STUDIO_HERO_IMAGE = 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1920&q=80';
 export const HEADER_BACKGROUND_IMAGE = 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1920&q=80';
 export const SHOWREEL_THUMBNAIL = 'https://img.youtube.com/vi/KoDU0c0dYRo/hqdefault.jpg';
-export const VFX_BEFORE_AFTER_IMAGE = getAssetUrl('assets/images/vfx_before_after_1786006622330.jpg');
+export const VFX_BEFORE_AFTER_IMAGE = getAssetUrl('Images/vfx_before_after_1786006622330.jpg');
 export const KARACHI_MAZAR_E_QUAID_IMAGE = 'https://images.pexels.com/photos/14427300/pexels-photo-14427300.jpeg';
 export const KARACHI_CITY_IMAGE = 'https://images.pexels.com/photos/14427300/pexels-photo-14427300.jpeg';
 export const LAHORE_MINAR_E_PAKISTAN_IMAGE = 'https://pixabay.com/images/download/ismanoor-mosque-4432476_1920.jpg';
@@ -526,27 +526,27 @@ export const PROCESS_STEPS = [
 ];
 
 export const CLIENT_LOGOS = [
-  { id: 1, name: 'Client 1', logo: 'client-logos/1.jpg' },
-  { id: 2, name: 'Client 2', logo: 'client-logos/2.jpg' },
-  { id: 3, name: 'Client 3', logo: 'client-logos/3.jpg' },
-  { id: 4, name: 'Client 4', logo: 'client-logos/4.jpg' },
-  { id: 5, name: 'Client 5', logo: 'client-logos/5.jpg' },
-  { id: 6, name: 'Client 6', logo: 'client-logos/6.jpg' },
-  { id: 7, name: 'Client 7', logo: 'client-logos/7.jpg' },
-  { id: 8, name: 'Client 8', logo: 'client-logos/8.jpg' },
-  { id: 9, name: 'Client 9', logo: 'client-logos/9.jpg' },
-  { id: 10, name: 'Client 10', logo: 'client-logos/10.jpg' },
-  { id: 11, name: 'Client 11', logo: 'client-logos/11.jpg' },
-  { id: 12, name: 'Client 12', logo: 'client-logos/12.jpg' },
-  { id: 13, name: 'Client 13', logo: 'client-logos/13.jpg' },
-  { id: 14, name: 'Client 14', logo: 'client-logos/14.jpg' },
-  { id: 15, name: 'Client 15', logo: 'client-logos/15.jpg' },
-  { id: 16, name: 'Client 16', logo: 'client-logos/16.jpg' },
-  { id: 17, name: 'Client 17', logo: 'client-logos/17.jpg' },
-  { id: 18, name: 'Client 18', logo: 'client-logos/18.jpg' },
-  { id: 19, name: 'Client 19', logo: 'client-logos/19.jpg' },
-  { id: 20, name: 'Client 20', logo: 'client-logos/20.jpg' },
-  { id: 21, name: 'Client 21', logo: 'client-logos/21.jpg' }
+  { id: 1, name: 'Client 1', logo: 'Images/Client Logos/1.jpg' },
+  { id: 2, name: 'Client 2', logo: 'Images/Client Logos/2.jpg' },
+  { id: 3, name: 'Client 3', logo: 'Images/Client Logos/3.jpg' },
+  { id: 4, name: 'Client 4', logo: 'Images/Client Logos/4.jpg' },
+  { id: 5, name: 'Client 5', logo: 'Images/Client Logos/5.jpg' },
+  { id: 6, name: 'Client 6', logo: 'Images/Client Logos/6.jpg' },
+  { id: 7, name: 'Client 7', logo: 'Images/Client Logos/7.jpg' },
+  { id: 8, name: 'Client 8', logo: 'Images/Client Logos/8.jpg' },
+  { id: 9, name: 'Client 9', logo: 'Images/Client Logos/9.jpg' },
+  { id: 10, name: 'Client 10', logo: 'Images/Client Logos/10.jpg' },
+  { id: 11, name: 'Client 11', logo: 'Images/Client Logos/11.jpg' },
+  { id: 12, name: 'Client 12', logo: 'Images/Client Logos/12.jpg' },
+  { id: 13, name: 'Client 13', logo: 'Images/Client Logos/13.jpg' },
+  { id: 14, name: 'Client 14', logo: 'Images/Client Logos/14.jpg' },
+  { id: 15, name: 'Client 15', logo: 'Images/Client Logos/15.jpg' },
+  { id: 16, name: 'Client 16', logo: 'Images/Client Logos/16.jpg' },
+  { id: 17, name: 'Client 17', logo: 'Images/Client Logos/17.jpg' },
+  { id: 18, name: 'Client 18', logo: 'Images/Client Logos/18.jpg' },
+  { id: 19, name: 'Client 19', logo: 'Images/Client Logos/19.jpg' },
+  { id: 20, name: 'Client 20', logo: 'Images/Client Logos/20.jpg' },
+  { id: 21, name: 'Client 21', logo: 'Images/Client Logos/21.jpg' }
 ];
 
 export const TESTIMONIALS: Testimonial[] = [
@@ -653,7 +653,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     name: 'Asad Ahmed Khan',
     role: 'CEO & Creative Director',
     bio: 'Founder of AA Animations with 08+ years of experience, serving diverse industries and clients globally through creative production, animation, visual management, and digital media.',
-    photo: 'team/Asad.jpg',
+    photo: 'Images/team/Asad.jpg',
     specialties: ['Creative Direction', 'Visual Strategy', 'Production Leadership'],
     socials: { linkedin: '#' }
   },
@@ -662,7 +662,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     name: 'Touseef',
     role: 'Managing Director',
     bio: 'Leading business operations, strategic planning, and organizational growth while supporting AA Animations’ creative and production objectives.',
-    photo: 'team/Touseef.jpg',
+    photo: 'Images/team/Touseef.jpg',
     specialties: ['Business Leadership', 'Operations Management', 'Strategic Planning'],
     socials: { linkedin: '#' }
   },
@@ -671,7 +671,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     name: 'Usman Khan',
     role: 'Director – Marketing & Sales',
     bio: 'Driving business growth through strategic marketing, client relationships, sales development, and global business opportunities for AA Animations.',
-    photo: 'team/Usman.jpg',
+    photo: 'Images/team/Usman.jpg',
     specialties: ['Marketing Strategy', 'Sales Leadership', 'Business Development'],
     socials: { linkedin: '#' }
   },
@@ -680,7 +680,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     name: 'Rodaba',
     role: 'Marketing Specialist',
     bio: 'Driving brand visibility, digital marketing initiatives, audience engagement, and promotional strategies to strengthen AA Animations’ global presence.',
-    photo: 'team/Rodaba.png',
+    photo: 'Images/team/Rodaba.png',
     specialties: ['Digital Marketing', 'Brand Strategy', 'Audience Engagement'],
     socials: { linkedin: '#' }
   }

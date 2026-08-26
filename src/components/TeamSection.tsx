@@ -10,30 +10,14 @@ const TeamMemberCard: React.FC<{ member: TeamMember }> = ({ member }) => {
     member.photo ? getAssetUrl(member.photo) : undefined
   );
   const [useAvatarFallback, setUseAvatarFallback] = useState(false);
-  const [retryCount, setRetryCount] = useState(0);
 
   const handlePhotoError = () => {
+    // If original photo failed, try exact Images/team/{name}
     const baseName = member.name.split(' ')[0];
-    const baseLower = baseName.toLowerCase();
-
-    if (retryCount === 0) {
-      setRetryCount(1);
-      setPhotoSrc(getAssetUrl(`team/${baseName}.png`));
-    } else if (retryCount === 1) {
-      setRetryCount(2);
-      setPhotoSrc(getAssetUrl(`team/${baseName}.jpg`));
-    } else if (retryCount === 2) {
-      setRetryCount(3);
-      setPhotoSrc(getAssetUrl(`images/team/${baseLower}.jpg`));
-    } else if (retryCount === 3) {
-      setRetryCount(4);
-      setPhotoSrc(getAssetUrl(`images/team/${baseLower}.png`));
-    } else if (retryCount === 4) {
-      setRetryCount(5);
-      setPhotoSrc(getAssetUrl(`Images/team/${baseName}.jpg`));
-    } else if (retryCount === 5) {
-      setRetryCount(6);
-      setPhotoSrc(getAssetUrl(`Images/team/${baseName}.png`));
+    const ext = member.name.includes('Rodaba') ? 'png' : 'jpg';
+    const fallbackPath = getAssetUrl(`Images/team/${baseName}.${ext}`);
+    if (photoSrc !== fallbackPath) {
+      setPhotoSrc(fallbackPath);
     } else {
       setUseAvatarFallback(true);
     }
