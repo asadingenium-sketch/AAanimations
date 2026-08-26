@@ -1,0 +1,6 @@
+{
+  "name": "AA Animations Studio",
+  "description": "AAanimations creates high-quality 2D & 3D animation, CGI, VFX, motion graphics, and visualization solutions that captivate audiences worldwide. © 2016 AA Animations. All Rights Reserved.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
