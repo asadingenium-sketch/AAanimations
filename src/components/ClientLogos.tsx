@@ -18,15 +18,18 @@ const ClientLogoCard: React.FC<{ client: ClientLogoItem }> = ({ client }) => {
   const handleError = () => {
     if (retryCount === 0) {
       setRetryCount(1);
-      setImgSrc(getAssetUrl(`client-logos/${client.id}.jpg`));
+      setImgSrc(getAssetUrl(`client-logos/${client.id}.png`));
     } else if (retryCount === 1) {
       setRetryCount(2);
-      setImgSrc(getAssetUrl(`Images/Client Logos/${client.id}.jpg`));
+      setImgSrc(getAssetUrl(`client-logos/${client.id}.jpg`));
     } else if (retryCount === 2) {
       setRetryCount(3);
-      setImgSrc(getAssetUrl(`Client Logos/${client.id}.jpg`));
+      setImgSrc(getAssetUrl(`Client Logos/${client.id}.png`));
     } else if (retryCount === 3) {
       setRetryCount(4);
+      setImgSrc(getAssetUrl(`Client Logos/${client.id}.jpg`));
+    } else if (retryCount === 4) {
+      setRetryCount(5);
       setImgSrc(getAssetUrl(`images/Client Logos/${client.id}.jpg`));
     } else {
       setHasError(true);
