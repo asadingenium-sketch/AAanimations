@@ -18,7 +18,7 @@ export const PRINTING_CATEGORIES: PrintCategoryItem[] = [
     title: 'Digital Printing',
     tagline: 'High-Speed Commercial & Publication Printing',
     description: 'Flawless high-speed digital and offset print production engineered for crisp color reproduction, razor-sharp typography, and premium paper tactile finishes for modern businesses worldwide.',
-    image: 'Images/Printing Section/Digital Printing.jpg',
+    image: '/Images/Printing Section/Digital Printing.jpg',
     icon: 'Printer',
     services: [
       'Color Printing',
@@ -39,7 +39,7 @@ export const PRINTING_CATEGORIES: PrintCategoryItem[] = [
     title: 'Corporate & Office Branding',
     tagline: 'Executive Identity & Workplace Collaterals',
     description: 'Establish unified, authoritative brand presence across your entire organization with high-security employee ID badges, luxury desk plates, embossed stationery, and executive toolkits.',
-    image: 'Images/Printing Section/Corporate & Office Branding.jpg',
+    image: '/Images/Printing Section/Corporate & Office Branding.jpg',
     icon: 'Briefcase',
     services: [
       'Employee ID Cards',
@@ -59,7 +59,7 @@ export const PRINTING_CATEGORIES: PrintCategoryItem[] = [
     title: 'Customized Promotional Products',
     tagline: 'High-Retention Branded Swag & Custom Keepsakes',
     description: 'Transform customer touchpoints into enduring brand loyalty with customized thermal magic mugs, personalized keychains, durable fridge magnets, and artisan wood/glass display frames.',
-    image: 'Images/Printing Section/Customized Promotional Products.png',
+    image: '/Images/Printing Section/Customized Promotional Products.png',
     icon: 'Gift',
     services: [
       'Mugs',
@@ -82,7 +82,7 @@ export const PRINTING_CATEGORIES: PrintCategoryItem[] = [
     title: 'Large Format Printing',
     tagline: 'High-Impact Outdoor Graphics & Fleet Signage',
     description: 'Command massive visual attention across outdoor billboards, exhibition venues, retail storefronts, and vehicle fleets with weatherproof UV-cured inks and precision vinyl plotter cutting.',
-    image: 'Images/Printing Section/Large Format Printing.jpg',
+    image: '/Images/Printing Section/Large Format Printing.jpg',
     icon: 'Maximize2',
     services: [
       'Panaflex Printing',
@@ -99,7 +99,7 @@ export const PRINTING_CATEGORIES: PrintCategoryItem[] = [
     title: 'Education & Training Materials',
     tagline: 'Curriculum Guides, Course Manuals & Workshop Kits',
     description: 'Empower universities, corporate training academies, and workshops with color-indexed spiral workbooks, durable laminated manuals, and comprehensive physical learning resource kits.',
-    image: 'Images/Printing Section/Education & Training Materials.jpg',
+    image: '/Images/Printing Section/Education & Training Materials.jpg',
     icon: 'GraduationCap',
     services: [
       'Educational Materials',
@@ -119,7 +119,7 @@ export const PRINTING_CATEGORIES: PrintCategoryItem[] = [
     title: '3D & Specialty Printing',
     tagline: 'Additive Prototyping & Custom Substrate Printing',
     description: 'Bring digital 3D models into physical reality with 25-micron SLA resin and SLS nylon prototyping, retro instant polaroid formats, UV-cured ceramic tiles, and collector-grade custom prints.',
-    image: 'Images/Printing Section/3D & Specialty Printing.jpg',
+    image: '/Images/Printing Section/3D & Specialty Printing.jpg',
     icon: 'Box',
     services: [
       '3D Printing',
