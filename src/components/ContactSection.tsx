@@ -17,6 +17,12 @@ import { ContactMessage } from '../types';
 import { OFFICE_LOCATIONS } from '../data/mockData';
 import { ScrollReveal } from './ScrollReveal';
 import { useLanguage } from '../context/LanguageContext';
+import {
+  trackContactFormSubmit,
+  trackWhatsAppClick,
+  trackEmailClick,
+  trackPhoneClick
+} from '../utils/analytics';
 
 interface ContactSectionProps {
   onAddContactMessage: (msg: ContactMessage) => void;
@@ -47,6 +53,8 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onAddContactMess
       status: 'New'
     };
     onAddContactMessage(newMsg);
+    // Track privacy-safe form submission (no PII)
+    trackContactFormSubmit(service, budget);
     setSentSuccess(true);
     setTimeout(() => {
       setSentSuccess(false);
@@ -204,6 +212,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onAddContactMess
                   href="https://wa.me/923313169811"
                   target="_blank"
                   rel="noreferrer"
+                  onClick={() => trackWhatsAppClick('contact_section')}
                   className="inline-flex items-center space-x-2 px-4 py-2 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs font-bold transition-all shadow-md shadow-[#25D366]/25 hover:scale-105 active:scale-95"
                 >
                   <svg
@@ -295,7 +304,11 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onAddContactMess
                   </div>
                   <div className="flex items-center space-x-2.5">
                     <Phone className="w-4 h-4 text-cyan-500 shrink-0" />
-                    <a href={`tel:${selectedOffice.phone.split('/')[0].trim()}`} className="text-xs hover:text-cyan-500 transition-colors font-medium">
+                    <a
+                      href={`tel:${selectedOffice.phone.split('/')[0].trim()}`}
+                      onClick={() => trackPhoneClick('contact_office_card')}
+                      className="text-xs hover:text-cyan-500 transition-colors font-medium"
+                    >
                       {selectedOffice.phone}
                     </a>
                   </div>
@@ -304,6 +317,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onAddContactMess
                     <div className="space-y-0.5 w-full">
                       <a
                         href={`mailto:${selectedOffice.email}`}
+                        onClick={() => trackEmailClick('contact_office_card')}
                         className="text-xs hover:text-cyan-500 transition-colors block font-medium"
                       >
                         {selectedOffice.email}
@@ -311,6 +325,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onAddContactMess
                       {selectedOffice.email2 && (
                         <a
                           href={`mailto:${selectedOffice.email2}`}
+                          onClick={() => trackEmailClick('contact_office_card')}
                           className="text-xs hover:text-cyan-500 transition-colors block font-medium"
                         >
                           {selectedOffice.email2}

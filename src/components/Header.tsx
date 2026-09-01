@@ -16,6 +16,7 @@ import { AALogo } from './AALogo';
 import { PageId, ServiceCategory, LanguageCode } from '../types';
 import { SERVICES_DATA } from '../data/mockData';
 import { useLanguage } from '../context/LanguageContext';
+import { trackContactClick } from '../utils/analytics';
 
 interface HeaderProps {
   currentPage: string;
@@ -86,6 +87,9 @@ export const Header: React.FC<HeaderProps> = ({
 
   const handleNavClick = (pageId: string) => {
     const targetPage = pageId === 'offices' ? 'contact' : pageId;
+    if (targetPage === 'contact') {
+      trackContactClick('Header Navigation', 'header');
+    }
     if (onNavigate) {
       onNavigate(targetPage);
     } else if (setCurrentPage) {

@@ -33,6 +33,7 @@ import {
 import { ScrollReveal, ScrollStaggerContainer, ScrollStaggerItem } from './ScrollReveal';
 import { useLanguage } from '../context/LanguageContext';
 import { getAssetUrl } from '../utils/assetHelper';
+import { trackWhatsAppClick } from '../utils/analytics';
 
 interface PrintingSectionProps {
   openQuoteModal?: () => void;
@@ -780,7 +781,10 @@ export const PrintingSection: React.FC<PrintingSectionProps> = ({
                 href={WHATSAPP_BASE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() => setSelectedCategory(null)}
+                onClick={() => {
+                  trackWhatsAppClick('printing_quote_modal');
+                  setSelectedCategory(null);
+                }}
                 className="flex-1 py-3.5 px-4 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black text-xs uppercase tracking-wider transition-all duration-300 shadow-[0_0_20px_rgba(6,182,212,0.3)] text-center flex items-center justify-center space-x-2"
               >
                 <Send className="w-4 h-4" />

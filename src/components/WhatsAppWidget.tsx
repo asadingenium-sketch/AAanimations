@@ -1,4 +1,5 @@
 import React from 'react';
+import { trackWhatsAppClick } from '../utils/analytics';
 
 export const WhatsAppWidget: React.FC = () => {
   return (
@@ -6,6 +7,7 @@ export const WhatsAppWidget: React.FC = () => {
       href="https://wa.me/923313169811"
       target="_blank"
       rel="noreferrer"
+      onClick={() => trackWhatsAppClick('floating_widget')}
       className="fixed bottom-18 sm:bottom-24 right-4 sm:right-6 z-40 w-12 sm:w-14 h-12 sm:h-14 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white flex items-center justify-center shadow-[0_4px_20px_rgba(37,211,102,0.45)] hover:shadow-[0_6px_25px_rgba(37,211,102,0.6)] hover:scale-110 active:scale-95 transition-all duration-300 border-2 border-white/30"
       title="Quick WhatsApp Studio Chat"
       aria-label="Quick WhatsApp Studio Chat"

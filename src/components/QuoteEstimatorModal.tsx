@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { X, Calculator, Sparkles, CheckCircle2, Clock, Send, ShieldCheck } from 'lucide-react';
 import { ServiceCategory } from '../types';
+import { trackQuoteEstimatorSubmit } from '../utils/analytics';
 
 interface QuoteEstimatorModalProps {
   isOpen: boolean;
@@ -49,18 +50,21 @@ export const QuoteEstimatorModal: React.FC<QuoteEstimatorModalProps> = ({
 
   const handleSubmitEstimate = (e: React.FormEvent) => {
     e.preventDefault();
+    const budgetRangeStr = `$${minPrice.toLocaleString()} - $${maxPrice.toLocaleString()}`;
     const newMsg = {
       id: `quote-${Date.now()}`,
       name: clientName || 'Estimator User',
       email: clientEmail,
       phone: '',
       service,
-      budget: `$${minPrice.toLocaleString()} - $${maxPrice.toLocaleString()}`,
+      budget: budgetRangeStr,
       message: `Estimated Scope: ${service} | Duration: ${duration}s | Style: ${style} | Res: ${resolution} | Rush: ${rush ? 'Yes' : 'No'} | Voiceover: ${voiceover ? 'Yes' : 'No'}`,
       submittedAt: new Date().toLocaleString(),
       status: 'New'
     };
     onAddContactMessage(newMsg);
+    // Track privacy-safe quote submission
+    trackQuoteEstimatorSubmit(service, budgetRangeStr);
     setSubmitted(true);
     setTimeout(() => {
       setSubmitted(false);
