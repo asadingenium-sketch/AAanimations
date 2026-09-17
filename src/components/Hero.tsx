@@ -12,6 +12,7 @@ import {
 import { PageId } from '../types';
 import { STUDIO_HERO_IMAGE } from '../data/mockData';
 import { useLanguage } from '../context/LanguageContext';
+import { EducationalHeroBackground } from './EducationalHeroBackground';
 
 interface HeroProps {
   setCurrentPage?: (page: PageId) => void;
@@ -106,6 +107,10 @@ export const Hero: React.FC<HeroProps> = ({
           </video>
           <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-slate-950/40" />
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-cyan-900/20 via-indigo-950/50 to-slate-950/80" />
+          
+          {/* Subtle Educational & Creative Background Elements */}
+          <EducationalHeroBackground />
+
           {/* Ambient glowing aura spots */}
           <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/15 rounded-full blur-3xl pointer-events-none animate-pulse" style={{ animationDuration: '4s' }} />
           <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl pointer-events-none animate-pulse" style={{ animationDuration: '6s' }} />
