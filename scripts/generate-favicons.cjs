@@ -1,4 +1,9 @@
-const { Resvg } = require('@resvg/resvg-js');
+let Resvg;
+try {
+  Resvg = require('@resvg/resvg-js').Resvg;
+} catch (e) {
+  console.log('Note: @resvg/resvg-js is an optional generation utility and not installed in standard build.');
+}
 const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
