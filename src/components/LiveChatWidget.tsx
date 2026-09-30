@@ -37,11 +37,11 @@ export const LiveChatWidget: React.FC = () => {
   };
 
   return (
-    <div className="fixed bottom-4 sm:bottom-6 right-4 sm:right-6 z-40">
+    <div className="fixed bottom-3 sm:bottom-6 right-3 sm:right-6 z-40">
       {!isOpen ? (
         <button
           onClick={() => setIsOpen(true)}
-          className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-tr from-cyan-600 to-purple-600 text-white flex items-center justify-center shadow-2xl hover:scale-110 active:scale-95 transition-transform relative group border-2 border-cyan-400 cursor-pointer"
+          className="w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-gradient-to-tr from-cyan-600 to-purple-600 text-white flex items-center justify-center shadow-2xl hover:scale-105 active:scale-95 transition-transform relative group border-2 border-cyan-400/80 cursor-pointer"
           title="Live Support Chat"
         >
           <MessageSquare className="w-5 h-5 sm:w-6 sm:h-6" />

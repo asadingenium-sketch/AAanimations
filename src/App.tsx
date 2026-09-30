@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { Hero } from './components/Hero';
+import { StatsCounterSection } from './components/StatsCounterSection';
 import { CompanyIntro } from './components/CompanyIntro';
 import { ServicesOverview } from './components/ServicesOverview';
 import { ServiceDetailView } from './components/ServiceDetailView';
@@ -250,8 +251,8 @@ export default function App() {
         setLanguage={setLanguage}
       />
 
-      {/* Main Content Router View */}
-      <main className="flex-1">
+      {/* Main Content Router View: mt-0 on mobile so Hero starts directly below header, sm:-mt-[122px] preserved for desktop */}
+      <main className={`flex-1 w-full max-w-none ${currentPage === 'home' ? 'mt-0 sm:-mt-[122px]' : ''}`}>
         {/* 1. HOME PAGE */}
         {currentPage === 'home' && (
           <>
@@ -262,6 +263,8 @@ export default function App() {
               openShowreel={() => setIsShowreelOpen(true)}
               openQuoteModal={() => setIsQuoteModalOpen(true)}
             />
+            {/* Dedicated Animated Statistics / Counter Section */}
+            <StatsCounterSection />
             <ServicesOverview
               navigateTo={navigateTo}
               onSelectService={(sId) => navigateTo('service-detail', sId)}

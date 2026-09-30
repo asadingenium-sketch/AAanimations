@@ -72,31 +72,47 @@ export const Footer: React.FC<FooterProps> = ({
   };
 
   return (
-    <footer className="bg-slate-950 text-slate-300 pt-16 pb-12 border-t border-slate-800 relative overflow-hidden">
-      {/* Background Decorative Glow */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-cyan-600/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl pointer-events-none" />
+    <footer className="bg-gradient-to-b from-[#FFFFFF] via-[#F8FAFF] via-[#F3F7FF] to-[#EEF5FF] dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 text-slate-700 dark:text-slate-300 pt-10 pb-8 sm:pt-12 sm:pb-10 border-t border-slate-200/90 dark:border-slate-800 relative overflow-hidden w-full max-w-none transition-colors">
+      {/* Background Decorative Glow (Hero Matching) */}
+      <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-gradient-to-br from-blue-100/50 via-indigo-100/30 to-transparent dark:bg-cyan-600/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-gradient-to-tl from-purple-100/40 via-blue-50/40 to-transparent dark:bg-purple-600/10 rounded-full blur-[140px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      {/* Lite Cinematic Texture: Soft Film Grain + Micro Stipple (Matching Hero, No Grid Lines) */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-45 dark:opacity-20 mix-blend-multiply dark:mix-blend-screen"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.06'/%3E%3C/svg%3E")`,
+        }}
+      />
+      {/* Subtle Micro-Stipple Texture */}
+      <div
+        className="absolute inset-0 pointer-events-none [mask-image:radial-gradient(ellipse_85%_75%_at_50%_50%,#000_40%,transparent_100%)] opacity-35 dark:opacity-15"
+        style={{
+          backgroundImage: 'radial-gradient(circle, rgba(100, 116, 139, 0.18) 1px, transparent 1px)',
+          backgroundSize: '24px 24px',
+        }}
+      />
+
+      <div className="w-full max-w-none px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 relative z-10">
         {/* Top Newsletter CTA */}
-        <div className="bg-gradient-to-r from-cyan-900/60 via-purple-900/60 to-slate-900 rounded-3xl p-8 sm:p-10 border border-cyan-500/30 mb-16 shadow-2xl flex flex-col lg:flex-row items-center justify-between gap-8">
+        <div className="bg-gradient-to-r from-white via-blue-50/60 to-indigo-50/50 dark:from-cyan-900/60 dark:via-purple-900/60 dark:to-slate-900 rounded-3xl p-6 sm:p-8 border border-blue-200/80 dark:border-cyan-500/30 mb-10 sm:mb-12 shadow-xl shadow-blue-500/5 dark:shadow-2xl flex flex-col lg:flex-row items-center justify-between gap-6">
           <div className="max-w-2xl">
-            <div className="flex items-center space-x-2 text-cyan-400 font-semibold text-xs tracking-widest uppercase mb-2">
+            <div className="flex items-center space-x-2 text-blue-600 dark:text-cyan-400 font-semibold text-xs tracking-widest uppercase mb-2">
               <Sparkles className="w-4 h-4" />
               <span>{t.footer.newsletterTitle}</span>
             </div>
-            <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+            <h3 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
               {t.footer.newsletterTitle}
             </h3>
-            <p className="text-sm text-slate-300 mt-2">
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-1.5">
               {t.footer.newsletterSub}
             </p>
           </div>
 
           <div className="w-full lg:w-auto min-w-0 sm:min-w-[320px]">
             {subscribed ? (
-              <div className="flex items-center space-x-3 bg-emerald-950/80 border border-emerald-500/50 text-emerald-300 px-6 py-4 rounded-2xl text-sm font-semibold">
-                <CheckCircle className="w-5 h-5 text-emerald-400 flex-shrink-0" />
+              <div className="flex items-center space-x-3 bg-emerald-50 dark:bg-emerald-950/80 border border-emerald-300 dark:border-emerald-500/50 text-emerald-800 dark:text-emerald-300 px-6 py-4 rounded-2xl text-sm font-semibold">
+                <CheckCircle className="w-5 h-5 text-emerald-600 dark:text-emerald-400 flex-shrink-0" />
                 <span>{t.footer.subscribed}</span>
               </div>
             ) : (
@@ -107,11 +123,11 @@ export const Footer: React.FC<FooterProps> = ({
                   onChange={(e) => setEmailInput(e.target.value)}
                   placeholder={t.footer.newsletterPlaceholder}
                   required
-                  className="w-full bg-slate-900/90 border border-slate-700 focus:border-cyan-500 text-white placeholder-slate-500 px-4 py-3 sm:py-3.5 rounded-xl text-sm outline-none transition-colors"
+                  className="w-full bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-700 focus:border-blue-500 dark:focus:border-cyan-500 text-slate-900 dark:text-white placeholder-slate-400 px-4 py-3 sm:py-3.5 min-h-[46px] rounded-xl text-sm outline-none transition-colors shadow-xs"
                 />
                 <button
                   type="submit"
-                  className="bg-cyan-600 hover:bg-cyan-500 text-white font-bold px-6 py-3 sm:py-3.5 rounded-xl text-sm flex items-center justify-center space-x-2 transition-all flex-shrink-0 shadow-lg shadow-cyan-600/30 cursor-pointer"
+                  className="bg-gradient-to-r from-blue-600 via-cyan-600 to-indigo-600 hover:from-blue-500 hover:via-cyan-500 text-white font-bold px-6 py-3 sm:py-3.5 min-h-[46px] rounded-xl text-sm flex items-center justify-center space-x-2 transition-all flex-shrink-0 shadow-lg shadow-blue-500/25 cursor-pointer"
                 >
                   <span>{t.footer.subscribe}</span>
                   <Send className="w-4 h-4" />
@@ -122,19 +138,21 @@ export const Footer: React.FC<FooterProps> = ({
         </div>
 
         {/* Main Grid Links */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-slate-800">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 pb-8 sm:pb-10 border-b border-slate-200/80 dark:border-slate-800">
           {/* Brand Info */}
           <div className="lg:col-span-2 space-y-4">
             <div className="flex items-center space-x-1 sm:space-x-1.5 cursor-pointer group" onClick={() => handlePageClick('home')}>
               <AALogo className="h-12 sm:h-15 md:h-16 w-auto group-hover:scale-105 transition-transform flex-shrink-0" />
               <div>
-                <span className="text-2xl sm:text-3xl font-black text-white tracking-tight">ANIMATIONS</span>
-                <span className="text-[10px] sm:text-xs tracking-widest font-bold uppercase text-cyan-400 block -mt-1">
+                <span className="text-2xl sm:text-3xl font-black bg-gradient-to-r from-slate-900 via-cyan-900 to-slate-800 dark:from-white dark:via-cyan-200 dark:to-slate-300 bg-clip-text text-transparent tracking-tight">
+                  ANIMATIONS
+                </span>
+                <span className="text-[10px] sm:text-xs tracking-widest font-bold uppercase text-cyan-600 dark:text-cyan-400 block -mt-1">
                   WE ANIMATE YOUR DREAMS
                 </span>
               </div>
             </div>
-            <p className="text-sm text-slate-400 leading-relaxed max-w-sm">
+            <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed max-w-sm">
               {t.footer.tagline}
             </p>
 
@@ -144,7 +162,7 @@ export const Footer: React.FC<FooterProps> = ({
                 href="https://www.youtube.com/@AAanimations-asad"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-xl bg-slate-900 text-slate-400 hover:text-white hover:bg-red-600 flex items-center justify-center transition-all border border-slate-800 hover:border-red-500"
+                className="w-9 h-9 rounded-xl bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:text-white hover:bg-red-600 dark:hover:bg-red-600 flex items-center justify-center transition-all border border-slate-200 dark:border-slate-800 hover:border-red-500 shadow-xs"
                 title="YouTube"
               >
                 <Youtube className="w-4 h-4" />
@@ -153,7 +171,7 @@ export const Footer: React.FC<FooterProps> = ({
                 href="https://www.linkedin.com/in/aa-animations/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-xl bg-slate-900 text-slate-400 hover:text-white hover:bg-blue-600 flex items-center justify-center transition-all border border-slate-800 hover:border-blue-500"
+                className="w-9 h-9 rounded-xl bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:text-white hover:bg-blue-600 dark:hover:bg-blue-600 flex items-center justify-center transition-all border border-slate-200 dark:border-slate-800 hover:border-blue-500 shadow-xs"
                 title="LinkedIn"
               >
                 <Linkedin className="w-4 h-4" />
@@ -162,7 +180,7 @@ export const Footer: React.FC<FooterProps> = ({
                 href="https://www.facebook.com/AAanimations786"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-xl bg-slate-900 text-slate-400 hover:text-white hover:bg-blue-700 flex items-center justify-center transition-all border border-slate-800 hover:border-blue-600"
+                className="w-9 h-9 rounded-xl bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:text-white hover:bg-blue-700 dark:hover:bg-blue-700 flex items-center justify-center transition-all border border-slate-200 dark:border-slate-800 hover:border-blue-600 shadow-xs"
                 title="Facebook"
               >
                 <Facebook className="w-4 h-4" />
@@ -171,7 +189,7 @@ export const Footer: React.FC<FooterProps> = ({
                 href="https://www.instagram.com/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-xl bg-slate-900 text-slate-400 hover:text-white hover:bg-pink-600 flex items-center justify-center transition-all border border-slate-800 hover:border-pink-500"
+                className="w-9 h-9 rounded-xl bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:text-white hover:bg-pink-600 dark:hover:bg-pink-600 flex items-center justify-center transition-all border border-slate-200 dark:border-slate-800 hover:border-pink-500 shadow-xs"
                 title="Instagram"
               >
                 <Instagram className="w-4 h-4" />
@@ -181,23 +199,23 @@ export const Footer: React.FC<FooterProps> = ({
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-sm font-extrabold uppercase text-white tracking-wider mb-4">
+            <h4 className="text-sm font-extrabold uppercase text-slate-900 dark:text-white tracking-wider mb-4">
               {t.footer.quickLinks}
             </h4>
             <ul className="space-y-2.5 text-xs font-medium">
-              <li><button onClick={() => handlePageClick('home')} className="hover:text-cyan-400 transition-colors cursor-pointer">{t.nav.home}</button></li>
-              <li><button onClick={() => handlePageClick('about')} className="hover:text-cyan-400 transition-colors cursor-pointer">{t.nav.about}</button></li>
-              <li><button onClick={() => handlePageClick('services')} className="hover:text-cyan-400 transition-colors cursor-pointer">{t.nav.services}</button></li>
-              <li><button onClick={() => handlePageClick('portfolio')} className="hover:text-cyan-400 transition-colors cursor-pointer">{t.nav.portfolio}</button></li>
-              <li><button onClick={() => handlePageClick('printing')} className="hover:text-cyan-400 transition-colors cursor-pointer">{t.nav.printing}</button></li>
-              <li><button onClick={() => handlePageClick('careers')} className="hover:text-cyan-400 transition-colors cursor-pointer">{t.nav.careers}</button></li>
-              <li><button onClick={() => handlePageClick('contact')} className="hover:text-cyan-400 transition-colors cursor-pointer">{t.nav.contact}</button></li>
+              <li><button onClick={() => handlePageClick('home')} className="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-cyan-400 transition-colors cursor-pointer">{t.nav.home}</button></li>
+              <li><button onClick={() => handlePageClick('about')} className="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-cyan-400 transition-colors cursor-pointer">{t.nav.about}</button></li>
+              <li><button onClick={() => handlePageClick('services')} className="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-cyan-400 transition-colors cursor-pointer">{t.nav.services}</button></li>
+              <li><button onClick={() => handlePageClick('portfolio')} className="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-cyan-400 transition-colors cursor-pointer">{t.nav.portfolio}</button></li>
+              <li><button onClick={() => handlePageClick('printing')} className="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-cyan-400 transition-colors cursor-pointer">{t.nav.printing}</button></li>
+              <li><button onClick={() => handlePageClick('careers')} className="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-cyan-400 transition-colors cursor-pointer">{t.nav.careers}</button></li>
+              <li><button onClick={() => handlePageClick('contact')} className="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-cyan-400 transition-colors cursor-pointer">{t.nav.contact}</button></li>
             </ul>
           </div>
 
           {/* Services List */}
           <div>
-            <h4 className="text-sm font-extrabold uppercase text-white tracking-wider mb-4">
+            <h4 className="text-sm font-extrabold uppercase text-slate-900 dark:text-white tracking-wider mb-4">
               {t.footer.servicesTitle}
             </h4>
             <ul className="space-y-2.5 text-xs font-medium">
@@ -205,7 +223,7 @@ export const Footer: React.FC<FooterProps> = ({
                 <li key={srv.id}>
                   <button
                     onClick={() => handleServiceClick(srv.id)}
-                    className="hover:text-cyan-400 transition-colors text-left cursor-pointer"
+                    className="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-cyan-400 transition-colors text-left cursor-pointer"
                   >
                     {srv.title}
                   </button>
@@ -216,19 +234,19 @@ export const Footer: React.FC<FooterProps> = ({
 
           {/* Our Offices */}
           <div>
-            <h4 className="text-sm font-extrabold uppercase text-white tracking-wider mb-4">
+            <h4 className="text-sm font-extrabold uppercase text-slate-900 dark:text-white tracking-wider mb-4">
               {t.contact.ourOffices}
             </h4>
             <div className="space-y-3 text-xs">
               {OFFICE_LOCATIONS.map((loc) => (
-                <div key={loc.city} className="border-b border-slate-900 pb-2">
-                  <div className="font-bold text-slate-200 flex items-center justify-between">
+                <div key={loc.city} className="border-b border-slate-200/70 dark:border-slate-900 pb-2">
+                  <div className="font-bold text-slate-800 dark:text-slate-200 flex items-center justify-between">
                     <span>{loc.city}, {loc.country}</span>
-                    <span className="text-[10px] text-cyan-400 font-mono">{loc.timeZone}</span>
+                    <span className="text-[10px] text-blue-600 dark:text-cyan-400 font-mono">{loc.timeZone}</span>
                   </div>
-                  <div className="text-slate-400 text-[11px] mt-0.5">{loc.address}</div>
-                  <div className="text-slate-500 text-[11px] flex items-center space-x-2 mt-1">
-                    <Phone className="w-3 h-3 text-cyan-400 flex-shrink-0" />
+                  <div className="text-slate-600 dark:text-slate-400 text-[11px] mt-0.5">{loc.address}</div>
+                  <div className="text-slate-500 dark:text-slate-500 text-[11px] flex items-center space-x-2 mt-1">
+                    <Phone className="w-3 h-3 text-blue-600 dark:text-cyan-400 flex-shrink-0" />
                     <span>{loc.phone}</span>
                   </div>
                 </div>
@@ -238,21 +256,21 @@ export const Footer: React.FC<FooterProps> = ({
         </div>
 
         {/* Bottom Credits & Legal */}
-        <div className="pt-8 flex flex-col md:flex-row items-center justify-between text-xs text-slate-500 gap-4 text-center md:text-left">
+        <div className="pt-8 flex flex-col md:flex-row items-center justify-between text-xs text-slate-500 dark:text-slate-400 gap-4 text-center md:text-left">
           <div>
             {t.footer.rights}
           </div>
           <div className="flex flex-wrap items-center justify-center space-x-4 sm:space-x-6">
             <button
               onClick={() => handlePageClick('privacy')}
-              className="hover:text-cyan-400 flex items-center space-x-1 transition-colors cursor-pointer"
+              className="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-cyan-400 flex items-center space-x-1 transition-colors cursor-pointer"
             >
               <Shield className="w-3.5 h-3.5" />
               <span>{t.footer.privacyPolicy}</span>
             </button>
             <button
               onClick={() => handlePageClick('terms')}
-              className="hover:text-cyan-400 flex items-center space-x-1 transition-colors cursor-pointer"
+              className="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-cyan-400 flex items-center space-x-1 transition-colors cursor-pointer"
             >
               <FileText className="w-3.5 h-3.5" />
               <span>{t.footer.termsOfService}</span>

@@ -66,27 +66,27 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onAddContactMess
   };
 
   return (
-    <section className="py-20 bg-slate-50 dark:bg-slate-950 transition-colors duration-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <ScrollReveal direction="up" className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+    <section className="py-10 sm:py-12 lg:py-14 bg-slate-50 dark:bg-slate-950 transition-colors duration-300 w-full max-w-none">
+      <div className="w-full max-w-none px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20">
+        <ScrollReveal direction="up" className="text-center max-w-3xl mx-auto mb-8 sm:mb-10 space-y-2">
           <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-cyan-100 dark:bg-cyan-950/80 text-cyan-600 dark:text-cyan-400 font-bold text-xs tracking-wider uppercase border border-cyan-200 dark:border-cyan-800">
             <Sparkles className="w-3.5 h-3.5" />
             <span>{t.contact.badge}</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white tracking-tight">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 dark:text-white tracking-tight">
             {t.contact.heading}
           </h2>
-          <p className="text-slate-600 dark:text-slate-400 text-base">
+          <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base">
             {t.contact.subtitle}
           </p>
         </ScrollReveal>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 items-start">
           {/* Contact Form Card */}
-          <ScrollReveal direction="left" delay={0.1} className="lg:col-span-7 bg-white dark:bg-slate-900 rounded-3xl p-8 border border-slate-200 dark:border-slate-800 shadow-xl space-y-6">
-            <div className="border-b border-slate-200 dark:border-slate-800 pb-4">
-              <h3 className="text-xl font-black text-slate-900 dark:text-white">{t.contact.formTitle}</h3>
-              <p className="text-xs text-slate-500 mt-1">{t.contact.formSubtitle}</p>
+          <ScrollReveal direction="left" delay={0.1} className="lg:col-span-7 bg-white dark:bg-slate-900 rounded-3xl p-5 sm:p-6 border border-slate-200 dark:border-slate-800 shadow-xl space-y-4">
+            <div className="border-b border-slate-200 dark:border-slate-800 pb-3">
+              <h3 className="text-lg sm:text-xl font-black text-slate-900 dark:text-white">{t.contact.formTitle}</h3>
+              <p className="text-xs text-slate-500 mt-0.5">{t.contact.formSubtitle}</p>
             </div>
 
             {sentSuccess ? (
@@ -110,7 +110,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onAddContactMess
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       placeholder={t.contact.namePlaceholder}
-                      className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2.5 text-xs outline-none focus:border-cyan-500 text-slate-900 dark:text-white"
+                      className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3 min-h-[44px] text-xs outline-none focus:border-cyan-500 text-slate-900 dark:text-white"
                     />
                   </div>
                   <div>
@@ -123,7 +123,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onAddContactMess
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder={t.contact.emailPlaceholder}
-                      className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2.5 text-xs outline-none focus:border-cyan-500 text-slate-900 dark:text-white"
+                      className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3 min-h-[44px] text-xs outline-none focus:border-cyan-500 text-slate-900 dark:text-white"
                     />
                   </div>
                 </div>
@@ -138,7 +138,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onAddContactMess
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
                       placeholder={t.contact.phonePlaceholder}
-                      className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2.5 text-xs outline-none focus:border-cyan-500 text-slate-900 dark:text-white"
+                      className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3 min-h-[44px] text-xs outline-none focus:border-cyan-500 text-slate-900 dark:text-white"
                     />
                   </div>
 
@@ -149,7 +149,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onAddContactMess
                     <select
                       value={service}
                       onChange={(e) => setService(e.target.value)}
-                      className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2.5 text-xs outline-none focus:border-cyan-500 text-slate-900 dark:text-white"
+                      className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3 min-h-[44px] text-xs outline-none focus:border-cyan-500 text-slate-900 dark:text-white"
                     >
                       <option>2D Animation</option>
                       <option>3D Animation</option>
@@ -170,7 +170,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onAddContactMess
                     <select
                       value={budget}
                       onChange={(e) => setBudget(e.target.value)}
-                      className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2.5 text-xs outline-none focus:border-cyan-500 text-slate-900 dark:text-white"
+                      className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3 min-h-[44px] text-xs outline-none focus:border-cyan-500 text-slate-900 dark:text-white"
                     >
                       <option>&lt; $5,000</option>
                       <option>$5,000 - $10,000</option>
@@ -190,13 +190,13 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onAddContactMess
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     placeholder={t.contact.detailsPlaceholder}
-                    className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2.5 text-xs outline-none focus:border-cyan-500 text-slate-900 dark:text-white"
+                    className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3 text-xs outline-none focus:border-cyan-500 text-slate-900 dark:text-white"
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full py-4 rounded-xl font-bold text-xs bg-gradient-to-r from-cyan-600 to-purple-600 hover:from-cyan-500 hover:to-purple-500 text-white shadow-lg shadow-cyan-600/30 flex items-center justify-center space-x-2 transition-all cursor-pointer"
+                  className="w-full py-3.5 sm:py-4 min-h-[48px] rounded-xl font-bold text-xs bg-gradient-to-r from-cyan-600 to-purple-600 hover:from-cyan-500 hover:to-purple-500 text-white shadow-lg shadow-cyan-600/30 flex items-center justify-center space-x-2 transition-all cursor-pointer"
                 >
                   <Send className="w-4 h-4" />
                   <span>{t.contact.submit}</span>
@@ -213,7 +213,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onAddContactMess
                   target="_blank"
                   rel="noreferrer"
                   onClick={() => trackWhatsAppClick('contact_section')}
-                  className="inline-flex items-center space-x-2 px-4 py-2 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs font-bold transition-all shadow-md shadow-[#25D366]/25 hover:scale-105 active:scale-95"
+                  className="inline-flex items-center justify-center space-x-2 px-4 py-2.5 min-h-[44px] w-full sm:w-auto rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs font-bold transition-all shadow-md shadow-[#25D366]/25 hover:scale-105 active:scale-95"
                 >
                   <svg
                     viewBox="0 0 24 24"
@@ -275,14 +275,14 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onAddContactMess
                   <button
                     key={loc.city}
                     onClick={() => setSelectedOffice(loc)}
-                    className={`p-3 rounded-2xl text-left border text-xs font-bold transition-all ${
+                    className={`p-2.5 sm:p-3 rounded-xl sm:rounded-2xl text-left border text-xs font-bold transition-all min-h-[50px] ${
                       selectedOffice.city === loc.city
                         ? 'bg-cyan-600 text-white border-cyan-500 shadow-md shadow-cyan-600/20'
                         : 'bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:border-cyan-500/50'
                     }`}
                   >
-                    <div>{loc.city}</div>
-                    <div className="text-[10px] opacity-80 font-normal mt-0.5">{loc.country}</div>
+                    <div className="truncate">{loc.city}</div>
+                    <div className="text-[10px] opacity-80 font-normal mt-0.5 truncate">{loc.country}</div>
                   </button>
                 ))}
               </div>

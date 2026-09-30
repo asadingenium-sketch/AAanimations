@@ -99,31 +99,31 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({
   }
 
   return (
-    <section className="py-20 bg-white dark:bg-slate-900 transition-colors duration-300" id="portfolio">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-10 sm:py-12 lg:py-14 bg-white dark:bg-slate-900 transition-colors duration-300 w-full max-w-none" id="portfolio">
+      <div className="w-full max-w-none px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20">
         {/* Header */}
-        <ScrollReveal direction="up" className="text-center max-w-3xl mx-auto mb-12 space-y-4">
+        <ScrollReveal direction="up" className="text-center max-w-3xl mx-auto mb-6 sm:mb-8 space-y-2">
           <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-cyan-50 dark:bg-cyan-950/80 text-cyan-600 dark:text-cyan-400 font-bold text-xs tracking-wider uppercase border border-cyan-200 dark:border-cyan-800">
             <Sparkles className="w-3.5 h-3.5" />
             <span>{t.portfolio.badge}</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white tracking-tight">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 dark:text-white tracking-tight">
             {t.portfolio.heading}
           </h2>
-          <p className="text-slate-600 dark:text-slate-400 text-base leading-relaxed">
+          <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base leading-relaxed">
             {t.portfolio.subtitle}
           </p>
         </ScrollReveal>
 
         {/* Filter Controls Bar */}
-        <ScrollReveal direction="up" delay={0.1} className="flex flex-col md:flex-row items-center justify-between gap-4 mb-12 bg-slate-50 dark:bg-slate-950 p-4 rounded-3xl border border-slate-200 dark:border-slate-800">
+        <ScrollReveal direction="up" delay={0.1} className="flex flex-col md:flex-row items-center justify-between gap-3 mb-6 sm:mb-8 bg-slate-50 dark:bg-slate-950 p-2.5 sm:p-3.5 rounded-2xl border border-slate-200 dark:border-slate-800">
           {/* Category Pills */}
           <div className="flex flex-wrap items-center gap-1.5 w-full md:w-auto">
             {categories.map((cat) => (
               <button
                 key={cat.key}
                 onClick={() => setSelectedCategory(cat.key)}
-                className={`px-4 py-2 rounded-2xl text-xs font-bold transition-all cursor-pointer ${
+                className={`px-3 sm:px-4 py-1.5 sm:py-2 min-h-[38px] rounded-xl sm:rounded-2xl text-[11px] sm:text-xs font-bold transition-all cursor-pointer ${
                   selectedCategory === cat.key
                     ? 'bg-cyan-600 text-white shadow-md shadow-cyan-600/30'
                     : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800'
@@ -142,14 +142,14 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder={t.faq.searchPlaceholder}
-              className="w-full bg-white dark:bg-slate-900 text-slate-900 dark:text-white placeholder-slate-400 pl-10 pr-4 py-2.5 rounded-2xl text-xs border border-slate-200 dark:border-slate-800 outline-none focus:border-cyan-500"
+              className="w-full bg-white dark:bg-slate-900 text-slate-900 dark:text-white placeholder-slate-400 pl-10 pr-4 py-2.5 min-h-[42px] rounded-xl sm:rounded-2xl text-xs border border-slate-200 dark:border-slate-800 outline-none focus:border-cyan-500"
             />
           </div>
         </ScrollReveal>
 
         {/* Portfolio Cards Grid */}
         {filteredProjects.length === 0 ? (
-          <div className="text-center py-12 bg-slate-50 dark:bg-slate-950 rounded-2xl border border-dashed border-slate-300 dark:border-slate-800">
+          <div className="text-center py-10 sm:py-12 bg-slate-50 dark:bg-slate-950 rounded-2xl border border-dashed border-slate-300 dark:border-slate-800">
             <SlidersHorizontal className="w-9 h-9 text-slate-400 mx-auto mb-2.5" />
             <h3 className="font-bold text-slate-800 dark:text-slate-200 text-sm">{t.portfolio.noProjects}</h3>
             <button
@@ -157,13 +157,13 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({
                 setSelectedCategory('All');
                 setSearchQuery('');
               }}
-              className="mt-3 px-3.5 py-1.5 rounded-lg text-xs font-bold bg-cyan-600 text-white cursor-pointer"
+              className="mt-3 px-3.5 py-2 min-h-[40px] rounded-xl text-xs font-bold bg-cyan-600 text-white cursor-pointer"
             >
               {t.portfolio.filterAll}
             </button>
           </div>
         ) : (
-          <ScrollStaggerContainer staggerDelay={0.06} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <ScrollStaggerContainer staggerDelay={0.06} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {filteredProjects.map((project) => {
               const targetUrl = project.externalUrl || project.videoUrl || 'https://www.youtube.com/channel/UCCUWdas21wlPVAa0p-VnXNw';
               const actionLabel = t.portfolio.viewDetails || 'Discover More';
@@ -187,7 +187,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({
                         else window.open(targetUrl, '_blank', 'noopener,noreferrer');
                       }
                     }}
-                    className="group bg-white dark:bg-slate-900 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800/90 hover:border-cyan-500/80 dark:hover:border-cyan-400/80 shadow-md hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-500 ease-out flex flex-col justify-between transform hover:scale-[1.03] hover:-translate-y-2 relative h-full cursor-pointer focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                    className="group bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800/90 hover:border-cyan-500/80 dark:hover:border-cyan-400/80 shadow-md hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-500 ease-out flex flex-col justify-between transform hover:scale-[1.03] hover:-translate-y-2 relative h-full cursor-pointer focus:outline-none focus:ring-2 focus:ring-cyan-500"
                   >
                     {/* Thumbnail Container with Scale & Blur Hover */}
                     <div className="relative aspect-video overflow-hidden bg-slate-950">
@@ -221,7 +221,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({
                     </div>
 
                     {/* Content */}
-                    <div className="p-5 space-y-3 flex-1 flex flex-col justify-between">
+                    <div className="p-4 sm:p-5 space-y-2.5 sm:space-y-3 flex-1 flex flex-col justify-between">
                       <div>
                         {project.client && project.year && (
                           <div className="text-[11px] font-semibold text-slate-400 mb-1">

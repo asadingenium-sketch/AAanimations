@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Sparkles,
   Search,
@@ -61,6 +61,15 @@ export const Header: React.FC<HeaderProps> = ({
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
   const [languageDropdownOpen, setLanguageDropdownOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const languages: { code: LanguageCode; label: string; flag: string }[] = [
     { code: 'EN', label: 'English', flag: '🇺🇸' },
@@ -123,29 +132,40 @@ export const Header: React.FC<HeaderProps> = ({
   };
 
   return (
-    <header className="sticky top-0 z-40 backdrop-blur-md bg-white/90 dark:bg-slate-950/90 border-b border-slate-200 dark:border-slate-800/80 transition-colors duration-300">
-      {/* Top Banner Notice */}
-      <div className="bg-gradient-to-r from-cyan-600 via-teal-600 to-emerald-600 text-white text-xs font-medium py-1.5 px-4 text-center flex items-center justify-center">
-        <div className="flex items-center space-x-2 mx-auto">
-          <Sparkles className="w-3.5 h-3.5 animate-pulse text-amber-300 flex-shrink-0" />
-          <span>🚀 AAanimations creates high-quality 2D & 3D animation, CGI, VFX, motion graphics, and visualization solutions that captivate audiences worldwide.</span>
+    <header
+      className={`sticky top-0 z-40 transition-all duration-300 ${
+        isScrolled
+          ? 'backdrop-blur-md bg-white/85 dark:bg-slate-950/85 border-b border-slate-100/80 dark:border-slate-800/80 shadow-xs'
+          : 'bg-transparent border-b border-transparent shadow-none'
+      }`}
+    >
+      {/* Mobile Top Header Banner (Mobile View Only, Static, Clean, Center-aligned) */}
+      <div className="sm:hidden w-full bg-gradient-to-r from-blue-50/90 via-indigo-50/70 to-purple-50/90 dark:from-slate-900/95 dark:via-indigo-950/70 dark:to-slate-900/95 border-b border-blue-100/40 dark:border-slate-800/40 text-slate-700 dark:text-slate-300 text-[10px] min-[360px]:text-[11px] font-medium py-1.5 px-3 min-[360px]:px-4 text-center leading-snug">
+        🚀 AAanimations creates high-quality 2D &amp; 3D animation, CGI, VFX &amp; visualization solutions that captivate audiences worldwide.
+      </div>
+
+      {/* Top Banner Notice - Seamless Translucent Tone (Visible on tablet/desktop) */}
+      <div className="hidden sm:flex bg-gradient-to-r from-blue-50/70 via-indigo-50/50 to-purple-50/70 dark:from-slate-900/60 dark:via-indigo-950/40 dark:to-slate-900/60 border-b border-blue-100/30 dark:border-slate-800/30 text-slate-700 dark:text-slate-300 text-[11px] sm:text-xs font-medium py-1 px-3 sm:px-4 text-center items-center justify-center transition-colors">
+        <div className="flex items-center space-x-1.5 sm:space-x-2 mx-auto max-w-full overflow-hidden">
+          <Sparkles className="w-3.5 h-3.5 animate-pulse text-blue-600 dark:text-cyan-400 flex-shrink-0" />
+          <span className="truncate">🚀 AAanimations creates high-quality 2D & 3D animation, CGI, VFX & visualization solutions that captivate audiences worldwide.</span>
         </div>
       </div>
 
-      {/* Main Navbar */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between py-2 sm:py-3 min-h-[84px]">
+      {/* Main Navbar - Full Viewport Width with Gradient White Background */}
+      <div className="w-full max-w-none px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 bg-gradient-to-b from-white/95 via-white/90 to-white/70 dark:from-slate-950/95 dark:via-slate-950/90 dark:to-slate-950/70 backdrop-blur-md transition-colors">
+        <div className="flex items-center justify-between py-1 sm:py-2 min-h-[54px] sm:min-h-[72px]">
           {/* Logo */}
           <div
             onClick={() => handleNavClick('home')}
             className="flex items-center space-x-1 sm:space-x-1.5 cursor-pointer group"
           >
-            <AALogo className="h-10 sm:h-12 md:h-14 w-auto group-hover:scale-105 transition-transform flex-shrink-0" />
+            <AALogo className="h-8 sm:h-11 md:h-12 w-auto group-hover:scale-105 transition-transform flex-shrink-0" />
             <div>
-              <span className="text-xl sm:text-2xl font-black tracking-tight bg-gradient-to-r from-slate-900 via-cyan-900 to-slate-800 dark:from-white dark:via-cyan-200 dark:to-slate-300 bg-clip-text text-transparent">
+              <span className="text-lg sm:text-2xl font-black tracking-tight bg-gradient-to-r from-slate-900 via-cyan-900 to-slate-800 dark:from-white dark:via-cyan-200 dark:to-slate-300 bg-clip-text text-transparent">
                 ANIMATIONS
               </span>
-              <span className="text-[10px] sm:text-xs tracking-widest font-bold uppercase text-cyan-600 dark:text-cyan-400 block -mt-1">
+              <span className="hidden min-[360px]:block text-[9px] sm:text-xs tracking-widest font-bold uppercase text-cyan-600 dark:text-cyan-400 -mt-1">
                 WE ANIMATE YOUR DREAMS
               </span>
             </div>
@@ -233,18 +253,18 @@ export const Header: React.FC<HeaderProps> = ({
           </nav>
 
           {/* Right Action Icons & Buttons */}
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-1 sm:space-x-2">
             {/* Search Button */}
             <button
               onClick={openSearchModal}
               title="Search Portfolio & Articles"
-              className="p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+              className="p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer min-w-[38px] min-h-[38px] flex items-center justify-center"
             >
-              <Search className="w-5 h-5" />
+              <Search className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
 
-            {/* Language Switcher */}
-            <div className="relative">
+            {/* Language Switcher - visible on sm+ screens */}
+            <div className="relative hidden sm:block">
               <button
                 onClick={() => setLanguageDropdownOpen(!languageDropdownOpen)}
                 title={t.nav.selectLanguage}
@@ -297,12 +317,12 @@ export const Header: React.FC<HeaderProps> = ({
             <button
               onClick={handleToggleTheme}
               title={darkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-              className="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800/80 text-slate-700 dark:text-slate-200 hover:bg-cyan-50 dark:hover:bg-cyan-950 hover:text-cyan-600 dark:hover:text-cyan-400 transition-all active:scale-95 cursor-pointer flex items-center justify-center border border-slate-200 dark:border-slate-700"
+              className="p-2 sm:p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800/80 text-slate-700 dark:text-slate-200 hover:bg-cyan-50 dark:hover:bg-cyan-950 hover:text-cyan-600 dark:hover:text-cyan-400 transition-all active:scale-95 cursor-pointer flex items-center justify-center border border-slate-200 dark:border-slate-700 min-w-[38px] min-h-[38px]"
             >
               {darkMode ? (
-                <Sun className="w-5 h-5 text-amber-400 animate-spin-slow" />
+                <Sun className="w-4 h-4 sm:w-5 sm:h-5 text-amber-400 animate-spin-slow" />
               ) : (
-                <Moon className="w-5 h-5 text-cyan-600" />
+                <Moon className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-600" />
               )}
             </button>
 
@@ -315,10 +335,11 @@ export const Header: React.FC<HeaderProps> = ({
               <span>{t.nav.getQuote}</span>
             </button>
 
-            {/* Mobile Hamburger Toggle */}
+            {/* Mobile Hamburger Toggle with 44px touch target */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="xl:hidden p-2 rounded-xl text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800"
+              aria-label={mobileMenuOpen ? 'Close Navigation Menu' : 'Open Navigation Menu'}
+              className="xl:hidden p-2 rounded-xl text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 min-w-[42px] min-h-[42px] flex items-center justify-center cursor-pointer"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -326,41 +347,46 @@ export const Header: React.FC<HeaderProps> = ({
         </div>
       </div>
 
-      {/* Mobile Menu Drawer */}
+      {/* Mobile Menu Drawer with Backdrop */}
       {mobileMenuOpen && (
-        <div className="xl:hidden max-h-[calc(100vh-5rem)] overflow-y-auto bg-white dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 px-4 pt-2 pb-6 space-y-3 shadow-2xl">
-          {navItems.map((item) => (
-            <div key={item.id}>
-              <button
-                onClick={() => handleNavClick(item.id)}
-                className={`w-full text-left px-4 py-3 rounded-xl text-sm font-semibold flex items-center justify-between transition-colors ${
-                  currentPage === item.id
-                    ? 'bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white font-bold'
-                    : 'text-slate-800 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800/60'
-                }`}
-              >
-                <span>{item.label}</span>
-              </button>
-            </div>
-          ))}
-
-          {/* Mobile Services quick list */}
-          <div className="pt-2 border-t border-slate-200 dark:border-slate-800">
-            <div className="px-4 text-xs font-semibold uppercase text-slate-400 mb-2">
-              {t.nav.popularServices}
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 px-2">
-              {SERVICES_DATA.slice(0, 6).map((srv) => (
+        <>
+          <div
+            className="fixed inset-0 bg-slate-950/50 backdrop-blur-xs z-30 xl:hidden"
+            onClick={() => setMobileMenuOpen(false)}
+          />
+          <div className="relative z-40 xl:hidden max-h-[calc(100vh-5rem)] overflow-y-auto bg-white dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 px-4 pt-2 pb-6 space-y-3 shadow-2xl">
+            {navItems.map((item) => (
+              <div key={item.id}>
                 <button
-                  key={srv.id}
-                  onClick={() => handleServiceSelect(srv.id)}
-                  className="text-left px-3 py-2 rounded-lg text-xs font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                  onClick={() => handleNavClick(item.id)}
+                  className={`w-full text-left px-4 py-3 rounded-xl text-sm font-semibold flex items-center justify-between transition-colors min-h-[44px] ${
+                    currentPage === item.id
+                      ? 'bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white font-bold'
+                      : 'text-slate-800 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800/60'
+                  }`}
                 >
-                  {srv.title}
+                  <span>{item.label}</span>
                 </button>
-              ))}
+              </div>
+            ))}
+
+            {/* Mobile Services quick list */}
+            <div className="pt-2 border-t border-slate-200 dark:border-slate-800">
+              <div className="px-4 text-xs font-semibold uppercase text-slate-400 mb-2">
+                {t.nav.popularServices}
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 px-2">
+                {SERVICES_DATA.slice(0, 6).map((srv) => (
+                  <button
+                    key={srv.id}
+                    onClick={() => handleServiceSelect(srv.id)}
+                    className="text-left px-3 py-2.5 rounded-lg text-xs font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors min-h-[40px] flex items-center"
+                  >
+                    {srv.title}
+                  </button>
+                ))}
+              </div>
             </div>
-          </div>
 
           {/* Mobile Theme & Language Controls */}
           <div className="pt-3 pb-1 border-t border-slate-200 dark:border-slate-800 space-y-2.5 px-2">
@@ -413,7 +439,8 @@ export const Header: React.FC<HeaderProps> = ({
             </button>
           </div>
         </div>
-      )}
-    </header>
+      </>
+    )}
+  </header>
   );
 };

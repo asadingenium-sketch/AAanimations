@@ -16,23 +16,23 @@ export const FAQSection: React.FC = () => {
   );
 
   return (
-    <section className="py-20 bg-white dark:bg-slate-900 transition-colors duration-300">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <ScrollReveal direction="up" className="text-center max-w-2xl mx-auto mb-12 space-y-4">
+    <section className="py-10 sm:py-12 lg:py-14 bg-white dark:bg-slate-900 transition-colors duration-300 w-full max-w-none">
+      <div className="w-full max-w-5xl xl:max-w-6xl mx-auto px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20">
+        <ScrollReveal direction="up" className="text-center max-w-2xl mx-auto mb-6 sm:mb-8 space-y-2">
           <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-cyan-50 dark:bg-cyan-950/80 text-cyan-600 dark:text-cyan-400 font-bold text-xs tracking-wider uppercase border border-cyan-200 dark:border-cyan-800">
             <HelpCircle className="w-3.5 h-3.5" />
             <span>{t.faq.badge}</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white tracking-tight">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 dark:text-white tracking-tight">
             {t.faq.heading}
           </h2>
-          <p className="text-slate-600 dark:text-slate-400 text-sm">
+          <p className="text-slate-600 dark:text-slate-400 text-xs sm:text-sm">
             {t.faq.subtitle}
           </p>
         </ScrollReveal>
 
         {/* Search */}
-        <ScrollReveal direction="up" delay={0.1} className="relative mb-8 max-w-md mx-auto">
+        <ScrollReveal direction="up" delay={0.1} className="relative mb-6 max-w-md mx-auto">
           <Search className="w-4 h-4 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2" />
           <input
             type="text"
@@ -44,7 +44,7 @@ export const FAQSection: React.FC = () => {
         </ScrollReveal>
 
         {/* Accordion List */}
-        <ScrollStaggerContainer staggerDelay={0.06} className="space-y-3">
+        <ScrollStaggerContainer staggerDelay={0.06} className="space-y-2.5">
           {filteredFaqs.map((faq, idx) => (
             <ScrollStaggerItem
               key={idx}
@@ -52,13 +52,13 @@ export const FAQSection: React.FC = () => {
             >
               <button
                 onClick={() => setOpenIdx(openIdx === idx ? null : idx)}
-                className="w-full px-6 py-4 text-left font-bold text-sm text-slate-900 dark:text-white flex items-center justify-between"
+                className="w-full px-5 py-3.5 text-left font-bold text-sm text-slate-900 dark:text-white flex items-center justify-between"
               >
                 <span>{faq.question}</span>
                 <ChevronDown className={`w-4 h-4 transition-transform ${openIdx === idx ? 'rotate-180 text-cyan-500' : ''}`} />
               </button>
               {openIdx === idx && (
-                <div className="px-6 pb-4 text-xs text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-200 dark:border-slate-800/60 pt-3">
+                <div className="px-5 pb-3.5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-200 dark:border-slate-800/60 pt-2.5">
                   {faq.answer}
                 </div>
               )}

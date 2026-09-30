@@ -38,30 +38,30 @@ export const ProcessFlow: React.FC = () => {
   };
 
   return (
-    <section className="py-20 bg-white dark:bg-slate-900 transition-colors duration-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+    <section className="py-10 sm:py-12 lg:py-14 bg-white dark:bg-slate-900 transition-colors duration-300 w-full max-w-none">
+      <div className="w-full max-w-none px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 space-y-8 sm:space-y-10">
         {/* Section Header */}
-        <ScrollReveal direction="up" className="text-center max-w-3xl mx-auto space-y-4">
+        <ScrollReveal direction="up" className="text-center max-w-3xl mx-auto space-y-2">
           <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-cyan-50 dark:bg-cyan-950/80 text-cyan-600 dark:text-cyan-400 font-bold text-xs tracking-wider uppercase border border-cyan-200 dark:border-cyan-800">
             <span>{t.process.badge}</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white tracking-tight">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 dark:text-white tracking-tight">
             {t.process.heading}
           </h2>
-          <p className="text-slate-600 dark:text-slate-400 text-base">
+          <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base">
             {t.process.subtitle}
           </p>
         </ScrollReveal>
 
         {/* Horizontal Timeline Steps with arrows between each card */}
-        <ScrollStaggerContainer staggerDelay={0.08} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6 lg:gap-4">
+        <ScrollStaggerContainer staggerDelay={0.08} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4 sm:gap-5 lg:gap-3.5">
           {dynamicSteps.map((step, idx) => (
             <ScrollStaggerItem
               key={idx}
-              className="relative p-5 rounded-3xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 hover:border-cyan-500/50 transition-all duration-300 flex flex-col justify-between group hover:shadow-lg hover:shadow-cyan-500/5"
+              className="relative p-4 sm:p-4.5 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 hover:border-cyan-500/50 transition-all duration-300 flex flex-col justify-between group hover:shadow-lg hover:shadow-cyan-500/5"
             >
               <div>
-                <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center justify-between mb-3">
                   <span className="text-xs font-mono font-black text-cyan-500">
                     {step.step}
                   </span>
