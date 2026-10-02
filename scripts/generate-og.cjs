@@ -143,6 +143,21 @@ async function run() {
   fs.writeFileSync(path.join(publicDir, 'og-image.jpg'), jpgBuffer);
   console.log('Created public/og-image.jpg (size:', jpgBuffer.length, 'bytes)');
 
+  // Write to public/Images/aa-animations-social-preview.jpg (exact requested path)
+  const imagesDir = path.join(publicDir, 'Images');
+  if (!fs.existsSync(imagesDir)) {
+    fs.mkdirSync(imagesDir, { recursive: true });
+  }
+
+  fs.writeFileSync(path.join(imagesDir, 'aa-animations-social-preview.jpg'), jpgBuffer);
+  console.log('Created public/Images/aa-animations-social-preview.jpg (size:', jpgBuffer.length, 'bytes)');
+
+  fs.writeFileSync(path.join(imagesDir, 'aa-animations-social-preview.png'), pngBuffer);
+  console.log('Created public/Images/aa-animations-social-preview.png (size:', pngBuffer.length, 'bytes)');
+
+  fs.writeFileSync(path.join(publicDir, 'aa-animations-social-preview.jpg'), jpgBuffer);
+  console.log('Created public/aa-animations-social-preview.jpg (size:', jpgBuffer.length, 'bytes)');
+
   // Also create a 512x512 square OG logo
   const svgFavicon = fs.readFileSync(path.join(publicDir, 'favicon.svg'));
   const logoSquare = await sharp(svgFavicon)
