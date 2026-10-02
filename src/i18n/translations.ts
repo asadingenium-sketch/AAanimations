@@ -301,7 +301,7 @@ export const TRANSLATIONS: Record<LanguageCode, TranslationDictionary> = {
       ourOffices: 'Studio Locations & Contact Points',
     },
     footer: {
-      tagline: 'Next-generation animation, visual effects, and high-precision commercial printing studio serving global enterprises and creative leaders.',
+      tagline: 'Next-generation animation, visual effects, and high-precision commercial printing services serving global enterprises and creative leaders.',
       quickLinks: 'Quick Links',
       servicesTitle: 'Animation Services',
       newsletterTitle: 'Subscribe to AA Animations Insider',
