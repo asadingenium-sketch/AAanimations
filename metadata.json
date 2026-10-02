@@ -1,6 +1,6 @@
 {
   "name": "AA Animations Studio",
-  "description": "AA Animations – High-end 2D & 3D Animation, CGI, VFX, Motion Graphics, Video Production & Creative Services worldwide.",
+  "description": "High-end 2D & 3D Animation, CGI, VFX, Motion Graphics, Video Production & Creative Services worldwide.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

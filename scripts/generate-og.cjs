@@ -2,123 +2,160 @@ const sharp = require('sharp');
 const fs = require('fs');
 const path = require('path');
 
-const svgCard = `
+// 1200 x 630 px Dedicated AA Animations Social Preview Card
+// Designed with a centered, prominent official AA Animations emblem
+// Safe for both 1.91:1 (Facebook, LinkedIn, Twitter) and 1:1 square crop (WhatsApp, Telegram)
+const svgHeroCard = `
 <svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <!-- Background Gradient -->
-    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0c1222" />
-      <stop offset="50%" stop-color="#070c18" />
-      <stop offset="100%" stop-color="#02040a" />
+    <!-- Dark obsidian gradient background -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b1120" />
+      <stop offset="45%" stop-color="#060a14" />
+      <stop offset="100%" stop-color="#020409" />
     </linearGradient>
 
-    <!-- Ambient Cyan Glow -->
-    <radialGradient id="cyanGlow" cx="25%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#06b6d4" stop-opacity="0.22" />
+    <!-- Studio Cyan Ambient Lighting -->
+    <radialGradient id="cyanAmbient" cx="50%" cy="38%" r="45%">
+      <stop offset="0%" stop-color="#06b6d4" stop-opacity="0.32" />
+      <stop offset="45%" stop-color="#0891b2" stop-opacity="0.12" />
       <stop offset="100%" stop-color="#06b6d4" stop-opacity="0" />
     </radialGradient>
 
-    <!-- Ambient Purple Glow -->
-    <radialGradient id="purpleGlow" cx="80%" cy="40%" r="55%">
-      <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.18" />
-      <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0" />
+    <!-- Studio Purple Atmospheric Accent -->
+    <radialGradient id="purpleAccent" cx="75%" cy="35%" r="40%">
+      <stop offset="0%" stop-color="#a855f7" stop-opacity="0.22" />
+      <stop offset="100%" stop-color="#a855f7" stop-opacity="0" />
     </radialGradient>
 
-    <!-- Studio Cyan to Purple Border Gradient -->
-    <linearGradient id="borderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#06b6d4" />
-      <stop offset="50%" stop-color="#a855f7" />
-      <stop offset="100%" stop-color="#06b6d4" />
+    <!-- Studio Indigo Atmospheric Accent -->
+    <radialGradient id="indigoAccent" cx="25%" cy="40%" r="40%">
+      <stop offset="0%" stop-color="#4f46e5" stop-opacity="0.2" />
+      <stop offset="100%" stop-color="#4f46e5" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Border Gradient -->
+    <linearGradient id="borderGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06b6d4" stop-opacity="0.7" />
+      <stop offset="50%" stop-color="#a855f7" stop-opacity="0.5" />
+      <stop offset="100%" stop-color="#06b6d4" stop-opacity="0.7" />
     </linearGradient>
 
-    <!-- Logo Gradients -->
-    <linearGradient id="rightAGrad" x1="220" y1="100" x2="400" y2="310" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#8377b0" />
-      <stop offset="50%" stop-color="#655a92" />
-      <stop offset="100%" stop-color="#4a426f" />
+    <!-- Official Left 'A' Gradient -->
+    <linearGradient id="leftAGradient" x1="120" y1="100" x2="300" y2="310" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#3b2f63" />
+      <stop offset="50%" stop-color="#2a2048" />
+      <stop offset="100%" stop-color="#19132d" />
     </linearGradient>
 
-    <linearGradient id="leftAGrad" x1="120" y1="100" x2="300" y2="310" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#3d3066" />
-      <stop offset="50%" stop-color="#2d2350" />
-      <stop offset="100%" stop-color="#1e1736" />
+    <!-- Official Right 'A' Gradient -->
+    <linearGradient id="rightAGradient" x1="220" y1="100" x2="400" y2="310" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#8a7fb8" />
+      <stop offset="50%" stop-color="#695d98" />
+      <stop offset="100%" stop-color="#4d4474" />
     </linearGradient>
 
-    <filter id="dropShadow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="3" dy="8" stdDeviation="8" flood-color="#000000" flood-opacity="0.8" />
+    <!-- Drop Shadow Filter -->
+    <filter id="logoShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="4" dy="10" stdDeviation="10" flood-color="#000000" flood-opacity="0.9" />
+    </filter>
+
+    <filter id="glowEffect" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
     </filter>
   </defs>
 
-  <!-- Background Base -->
-  <rect width="1200" height="630" fill="url(#bg)" />
+  <!-- Solid Obsidian Background -->
+  <rect width="1200" height="630" fill="url(#bgGrad)" />
 
-  <!-- Ambient Light Fields -->
-  <circle cx="280" cy="315" r="380" fill="url(#cyanGlow)" />
-  <circle cx="950" cy="260" r="420" fill="url(#purpleGlow)" />
+  <!-- Ambient Light Orbs -->
+  <circle cx="600" cy="240" r="480" fill="url(#cyanAmbient)" />
+  <circle cx="850" cy="220" r="380" fill="url(#purpleAccent)" />
+  <circle cx="350" cy="240" r="380" fill="url(#indigoAccent)" />
 
-  <!-- Outer Framing Ring -->
-  <rect x="24" y="24" width="1152" height="582" rx="28" fill="none" stroke="url(#borderGrad)" stroke-width="2" stroke-opacity="0.35" />
+  <!-- Elegant Outer Precision Frame -->
+  <rect x="24" y="24" width="1152" height="582" rx="28" fill="none" stroke="url(#borderGradient)" stroke-width="2" stroke-opacity="0.4" />
 
-  <!-- Left: Official AA Logo Emblem -->
-  <g transform="translate(100, 115)">
-    <!-- Container Badge -->
-    <rect x="0" y="0" width="400" height="400" rx="90" fill="#090e1c" stroke="url(#borderGrad)" stroke-width="8" />
+  <!-- Corner Tech Accents -->
+  <path d="M 40 60 L 40 40 L 60 40" stroke="#06b6d4" stroke-width="3" fill="none" stroke-linecap="round" />
+  <path d="M 1160 60 L 1160 40 L 1140 40" stroke="#a855f7" stroke-width="3" fill="none" stroke-linecap="round" />
+  <path d="M 40 570 L 40 590 L 60 590" stroke="#06b6d4" stroke-width="3" fill="none" stroke-linecap="round" />
+  <path d="M 1160 570 L 1160 590 L 1140 590" stroke="#a855f7" stroke-width="3" fill="none" stroke-linecap="round" />
 
-    <!-- Ambient Logo Glow -->
-    <circle cx="200" cy="200" r="150" fill="#06b6d4" fill-opacity="0.12" />
+  <!-- Top Global Category Pill -->
+  <g transform="translate(600, 56)">
+    <rect x="-170" y="0" width="340" height="34" rx="17" fill="#0c162d" stroke="#06b6d4" stroke-opacity="0.5" stroke-width="1.5" />
+    <text x="0" y="22" fill="#22d3ee" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="12" font-weight="800" letter-spacing="3" text-anchor="middle">CREATIVE ANIMATION &amp; VFX STUDIO</text>
+  </g>
 
-    <!-- Official AA Double-A Logo -->
-    <g transform="translate(200, 200) scale(1.05) translate(-235, -210)">
-      <!-- Right 'A' -->
+  <!-- ========================================================================= -->
+  <!-- CENTERED PROMINENT OFFICIAL AA ANIMATIONS EMBLEM                          -->
+  <!-- ========================================================================= -->
+  <g transform="translate(600, 240)">
+    <!-- Ambient Pod Glow -->
+    <ellipse cx="0" cy="10" rx="260" ry="120" fill="#06b6d4" fill-opacity="0.16" />
+
+    <!-- Official AA Double-A Mark (Enlarged and perfectly centered) -->
+    <g transform="scale(1.42) translate(-235, -205)">
+      <!-- Right 'A' (behind) -->
       <g id="RightA">
         <path
           d="M 273 110 L 297 110 L 405 310 L 345 310 L 322 270 L 248 270 L 225 310 L 165 310 Z"
-          fill="url(#rightAGrad)"
+          fill="url(#rightAGradient)"
           stroke="#9b8ecf"
-          stroke-width="3"
+          stroke-width="3.5"
           stroke-linejoin="round"
         />
-        <polygon points="276,182 276,218 308,200" fill="#ffffff" stroke="#ffffff" stroke-width="2" stroke-linejoin="round" />
+        <!-- White Play Button inside Right 'A' -->
+        <polygon
+          points="276,182 276,218 308,200"
+          fill="#ffffff"
+          stroke="#ffffff"
+          stroke-width="2"
+          stroke-linejoin="round"
+        />
       </g>
 
-      <!-- Left 'A' -->
-      <g id="LeftA" filter="url(#dropShadow)">
+      <!-- Left 'A' (overlapping in front with depth drop shadow) -->
+      <g id="LeftA" filter="url(#logoShadow)">
         <path
           d="M 183 110 L 207 110 L 305 310 L 245 310 L 222 270 L 148 270 L 125 310 L 65 310 Z"
-          fill="url(#leftAGrad)"
+          fill="url(#leftAGradient)"
           stroke="#5d4c8e"
-          stroke-width="3"
+          stroke-width="3.5"
           stroke-linejoin="round"
         />
-        <polygon points="176,182 176,218 208,200" fill="#ffffff" stroke="#ffffff" stroke-width="2" stroke-linejoin="round" />
+        <!-- White Play Button inside Left 'A' -->
+        <polygon
+          points="176,182 176,218 208,200"
+          fill="#ffffff"
+          stroke="#ffffff"
+          stroke-width="2"
+          stroke-linejoin="round"
+        />
       </g>
     </g>
   </g>
 
-  <!-- Right: Branding & Typography -->
-  <g transform="translate(550, 175)">
-    <!-- Category Kicker -->
-    <rect x="0" y="-35" width="280" height="34" rx="17" fill="#06b6d4" fill-opacity="0.15" stroke="#06b6d4" stroke-opacity="0.4" stroke-width="1" />
-    <text x="140" y="-13" fill="#22d3ee" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="800" letter-spacing="2" text-anchor="middle">CREATIVE PRODUCTION STUDIO</text>
+  <!-- ========================================================================= -->
+  <!-- BRAND TYPOGRAPHY & CREDENTIALS                                            -->
+  <!-- ========================================================================= -->
+  <g transform="translate(600, 420)">
+    <!-- Main Studio Name -->
+    <text x="0" y="0" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="52" font-weight="900" letter-spacing="4" text-anchor="middle">AA ANIMATIONS</text>
 
-    <!-- Main Title -->
-    <text x="0" y="60" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="52" font-weight="900" letter-spacing="1">AA ANIMATIONS</text>
+    <!-- Studio Slogan -->
+    <text x="0" y="38" fill="#22d3ee" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="18" font-weight="800" letter-spacing="7" text-anchor="middle">WE ANIMATE YOUR DREAMS</text>
 
-    <!-- Subtitle Slogan -->
-    <text x="0" y="105" fill="#06b6d4" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="20" font-weight="800" letter-spacing="5">WE ANIMATE YOUR DREAMS</text>
+    <!-- Services Line -->
+    <text x="0" y="82" fill="#cbd5e1" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="17" font-weight="600" letter-spacing="1" text-anchor="middle">2D &amp; 3D Animation • CGI &amp; VFX • Motion Graphics • Video Production</text>
 
-    <!-- Hairline Separator -->
-    <line x1="0" y1="145" x2="550" y2="145" stroke="#334155" stroke-width="1.5" stroke-opacity="0.6" />
-
-    <!-- Services Description List -->
-    <text x="0" y="195" fill="#e2e8f0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="21" font-weight="600" letter-spacing="0.5">2D &amp; 3D Animation • CGI &amp; VFX</text>
-    <text x="0" y="235" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="20" font-weight="500" letter-spacing="0.5">Motion Graphics • Video Production • Visualization</text>
-
-    <!-- Domain Pill -->
-    <g transform="translate(0, 275)">
-      <rect x="0" y="0" width="220" height="42" rx="12" fill="#0f172a" stroke="#06b6d4" stroke-opacity="0.5" stroke-width="1.5" />
-      <circle cx="22" cy="21" r="5" fill="#10b981" />
-      <text x="38" y="27" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="700" letter-spacing="1">aaanimations.site</text>
+    <!-- Bottom URL Badge -->
+    <g transform="translate(0, 114)">
+      <rect x="-115" y="0" width="230" height="38" rx="12" fill="#0b1324" stroke="#06b6d4" stroke-opacity="0.6" stroke-width="1.5" />
+      <circle cx="-85" cy="19" r="4.5" fill="#10b981" />
+      <text x="12" y="24" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="15" font-weight="700" letter-spacing="1" text-anchor="middle">aaanimations.site</text>
     </g>
   </g>
 </svg>
@@ -126,46 +163,54 @@ const svgCard = `
 
 async function run() {
   const publicDir = path.resolve(__dirname, '../public');
+  const imagesDir = path.join(publicDir, 'Images');
+  const imagesLowerDir = path.join(publicDir, 'images');
 
-  // Generate 1200x630 OG Image (PNG)
-  const pngBuffer = await sharp(Buffer.from(svgCard))
+  if (!fs.existsSync(imagesDir)) fs.mkdirSync(imagesDir, { recursive: true });
+  if (!fs.existsSync(imagesLowerDir)) fs.mkdirSync(imagesLowerDir, { recursive: true });
+
+  const svgBuffer = Buffer.from(svgHeroCard);
+
+  // Generate 1200x630 JPEG (Optimal compatibility across WhatsApp, Facebook, LinkedIn, Twitter)
+  const jpgBuffer = await sharp(svgBuffer)
+    .jpeg({ quality: 92 })
+    .toBuffer();
+
+  // Generate 1200x630 PNG
+  const pngBuffer = await sharp(svgBuffer)
     .png({ quality: 95, compressionLevel: 9 })
     .toBuffer();
 
-  fs.writeFileSync(path.join(publicDir, 'og-image.png'), pngBuffer);
-  console.log('Created public/og-image.png (size:', pngBuffer.length, 'bytes)');
+  // Write to all target paths for 100% reliability
+  const targets = [
+    path.join(imagesDir, 'aa-animations-social-preview.jpg'),
+    path.join(imagesDir, 'aa-animations-social-preview.png'),
+    path.join(imagesLowerDir, 'aa-animations-social-preview.jpg'),
+    path.join(imagesLowerDir, 'aa-animations-social-preview.png'),
+    path.join(publicDir, 'aa-animations-social-preview.jpg'),
+    path.join(publicDir, 'og-image.jpg'),
+    path.join(publicDir, 'og-image.png')
+  ];
 
-  // Also generate JPEG version for maximum compatibility
-  const jpgBuffer = await sharp(Buffer.from(svgCard))
-    .jpeg({ quality: 90 })
-    .toBuffer();
-
-  fs.writeFileSync(path.join(publicDir, 'og-image.jpg'), jpgBuffer);
-  console.log('Created public/og-image.jpg (size:', jpgBuffer.length, 'bytes)');
-
-  // Write to public/Images/aa-animations-social-preview.jpg (exact requested path)
-  const imagesDir = path.join(publicDir, 'Images');
-  if (!fs.existsSync(imagesDir)) {
-    fs.mkdirSync(imagesDir, { recursive: true });
+  for (const t of targets) {
+    if (t.endsWith('.jpg')) {
+      fs.writeFileSync(t, jpgBuffer);
+    } else {
+      fs.writeFileSync(t, pngBuffer);
+    }
+    console.log('Saved:', t);
   }
 
-  fs.writeFileSync(path.join(imagesDir, 'aa-animations-social-preview.jpg'), jpgBuffer);
-  console.log('Created public/Images/aa-animations-social-preview.jpg (size:', jpgBuffer.length, 'bytes)');
-
-  fs.writeFileSync(path.join(imagesDir, 'aa-animations-social-preview.png'), pngBuffer);
-  console.log('Created public/Images/aa-animations-social-preview.png (size:', pngBuffer.length, 'bytes)');
-
-  fs.writeFileSync(path.join(publicDir, 'aa-animations-social-preview.jpg'), jpgBuffer);
-  console.log('Created public/aa-animations-social-preview.jpg (size:', jpgBuffer.length, 'bytes)');
-
-  // Also create a 512x512 square OG logo
+  // Also verify square logo
   const svgFavicon = fs.readFileSync(path.join(publicDir, 'favicon.svg'));
   const logoSquare = await sharp(svgFavicon)
     .resize(512, 512)
     .png()
     .toBuffer();
   fs.writeFileSync(path.join(publicDir, 'og-logo.png'), logoSquare);
-  console.log('Created public/og-logo.png');
+  fs.writeFileSync(path.join(imagesDir, 'aa-animations-logo.png'), logoSquare);
+  fs.writeFileSync(path.join(imagesLowerDir, 'aa-animations-logo.png'), logoSquare);
+  console.log('Saved square logos successfully.');
 }
 
 run().catch(console.error);
