@@ -159,7 +159,7 @@ export const Footer: React.FC<FooterProps> = ({
             {/* Social Icons */}
             <div className="pt-2 flex items-center space-x-3">
               <a
-                href="https://www.youtube.com/@AAanimations-asad"
+                href="https://www.youtube.com/@AAanimations-Agency/videos"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 rounded-xl bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:text-white hover:bg-red-600 dark:hover:bg-red-600 flex items-center justify-center transition-all border border-slate-200 dark:border-slate-800 hover:border-red-500 shadow-xs"

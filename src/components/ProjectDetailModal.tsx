@@ -118,7 +118,7 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
                     />
                     <div className="absolute inset-0 bg-slate-950/40 flex flex-col items-center justify-center p-4">
                       <a
-                        href={project.externalUrl || project.videoUrl || 'https://www.youtube.com/channel/UCCUWdas21wlPVAa0p-VnXNw'}
+                        href={project.externalUrl || project.videoUrl || 'https://www.youtube.com/@AAanimations-Agency/videos'}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="px-6 py-3 rounded-2xl bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs shadow-xl flex items-center space-x-2 transition-all transform hover:scale-105"

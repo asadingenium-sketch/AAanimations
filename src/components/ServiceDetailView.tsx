@@ -109,7 +109,7 @@ export const ServiceDetailView: React.FC<ServiceDetailViewProps> = ({
 
             <div className="pt-4 flex items-center space-x-4">
               <a
-                href={service.portfolioLink || 'https://www.youtube.com/channel/UCCUWdas21wlPVAa0p-VnXNw'}
+                href={service.portfolioLink || 'https://www.youtube.com/@AAanimations-Agency/videos'}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-6 py-3 rounded-xl font-bold text-xs bg-cyan-600 hover:bg-cyan-500 text-white shadow-lg shadow-cyan-600/30 transition-all inline-flex items-center space-x-2"

@@ -165,7 +165,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({
         ) : (
           <ScrollStaggerContainer staggerDelay={0.06} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {filteredProjects.map((project) => {
-              const targetUrl = project.externalUrl || project.videoUrl || 'https://www.youtube.com/channel/UCCUWdas21wlPVAa0p-VnXNw';
+              const targetUrl = project.externalUrl || project.videoUrl || 'https://www.youtube.com/@AAanimations-Agency/videos';
               const actionLabel = t.portfolio.viewDetails || 'Discover More';
 
               return (

@@ -95,7 +95,7 @@ export const Hero: React.FC<HeroProps> = ({
         <div className="mt-3.5 sm:mt-6 lg:mt-7 flex flex-col sm:flex-row items-center justify-center gap-2.5 sm:gap-4 w-full max-w-[270px] min-[360px]:max-w-[290px] min-[390px]:max-w-[320px] sm:max-w-none mx-auto">
           {/* VIEW OUR PROJECT (Mobile) / VIEW OUR WORK (Desktop/Tablet): Primary Gradient Button */}
           <a
-            href="https://www.youtube.com/channel/UCCUWdas21wlPVAa0p-VnXNw"
+            href="https://www.youtube.com/@AAanimations-Agency/videos"
             target="_blank"
             rel="noopener noreferrer"
             className="w-full sm:w-auto sm:flex-initial group px-4 min-[360px]:px-5 sm:px-7 lg:px-8 py-3 sm:py-3.5 min-h-[46px] sm:min-h-[48px] rounded-xl sm:rounded-2xl font-black text-xs sm:text-sm uppercase tracking-wider bg-gradient-to-r from-blue-600 via-cyan-600 to-indigo-600 hover:from-blue-500 hover:via-cyan-500 hover:to-indigo-500 text-white shadow-lg shadow-cyan-600/25 hover:shadow-cyan-500/40 flex items-center justify-center space-x-2 transition-all duration-300 transform active:scale-95 cursor-pointer whitespace-nowrap text-center"

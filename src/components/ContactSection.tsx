@@ -231,7 +231,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onAddContactMess
               <div className="flex items-center space-x-2 pt-2">
                 <span className="text-xs text-slate-500 font-medium mr-1">Follow Us:</span>
                 <a
-                  href="https://www.youtube.com/@AAanimations-asad"
+                  href="https://www.youtube.com/@AAanimations-Agency/videos"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-red-500 hover:bg-red-600 hover:text-white transition-all"
